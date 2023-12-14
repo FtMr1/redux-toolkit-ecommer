@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch , useSelector} from 'react-redux'
-import { getProduct } from '../../redux/productSlice'
+import { getCategoryProduct, getProduct } from '../../redux/productSlice'
 import Loading from '../Loading'
 import Products from './Products'
 import ReactPaginate from 'react-paginate';
@@ -9,7 +9,7 @@ import ReactPaginate from 'react-paginate';
 
 
 
-export const Product = () => {
+export const Product = ({category}) => {
   const dispatch = useDispatch()
   const {products  , productsStatus} = useSelector(state =>state.products)
   
@@ -34,8 +34,13 @@ export const Product = () => {
 
    console.log(products)
   useEffect(() => {
-    dispatch(getProduct())
-   }, [dispatch])
+    if(category){
+      dispatch(getCategoryProduct(category))
+    }else{
+      dispatch(getProduct())
+    }
+   
+   }, [dispatch,category])
   return (
     <div>
       {
