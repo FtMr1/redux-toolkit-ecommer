@@ -9,7 +9,7 @@ import ReactPaginate from 'react-paginate';
 
 
 
-export const Product = ({category}) => {
+export const Product = ({category , sort}) => {
   const dispatch = useDispatch()
   const {products  , productsStatus} = useSelector(state =>state.products)
   
@@ -30,7 +30,7 @@ export const Product = ({category}) => {
     setItemOffset(newOffset);
   };
   
-  
+      
 
    console.log(products)
   useEffect(() => {
@@ -48,7 +48,7 @@ export const Product = ({category}) => {
        <>
    
        <div className='flex flex-wrap'>
-          {currentItems?.map((product , i )=>(
+          {currentItems?.sort((a,b)=> sort == "inc" ? a.price-b.price : sort =="dec" ? b.price-a.price : "").map((product , i )=>(
             <Products key={i} product={product}/>
           ))}
         </div>
