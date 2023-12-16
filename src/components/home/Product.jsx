@@ -10,6 +10,8 @@ import ReactPaginate from 'react-paginate';
 
 
 export const Product = ({category , sort}) => {
+
+  
   const dispatch = useDispatch()
   const {products  , productsStatus} = useSelector(state =>state.products)
   
