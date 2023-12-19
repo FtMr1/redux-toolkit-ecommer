@@ -1,9 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
+import {useDispatch} from 'react-redux'
+import { addToCart } from '../../redux/cartSlice'
+
+
+
+
+
+
 const Detailcomp = ({productsDetail}) => {
+  const dispatch = useDispatch()
 const [quantity, setQuantity] = useState(0)
 
 const increment = ()=>  {
+  
     if(quantity < productsDetail?.rating?.count){
       setQuantity(quantity+1) 
     }
@@ -18,7 +28,7 @@ const decrement = ()=>  {
  
 }
 const addBasket = ()=>{
-  
+      dispatch(addToCart({id: productsDetail?.id , title : productsDetail?.title  , image : productsDetail?.image ,quantity:quantity ,  price : productsDetail?.price}))
 }
 
   return (
